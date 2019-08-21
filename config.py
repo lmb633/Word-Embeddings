@@ -8,7 +8,6 @@ data_path = 'data/data.pkl'
 vocabulary_size = 60898
 emb_size = 128
 
-
 def parse_args():
     parser = argparse.ArgumentParser(description='train word2vec')
     parser.add_argument('--end-epoch', type=int, default=50, help='training epoch size.')
