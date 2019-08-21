@@ -68,8 +68,8 @@ def train(train_loader, model, optimizer, epoch):
         optimizer.step()
 
         losses.update(loss.item())
-        # if i % print_freq == 0:
-        print('Epoch: [{0}][{1}/{2}]  Loss this batch:{3} (avg:{4})'.format(epoch, i, len(train_loader), losses.val, losses.avg))
+        if i % print_freq == 0:
+            print('Epoch: [{0}][{1}/{2}]  Loss this batch:{3} (avg:{4})'.format(epoch, i, len(train_loader), losses.val, losses.avg))
     return losses.avg
 
 
