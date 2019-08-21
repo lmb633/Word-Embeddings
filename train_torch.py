@@ -6,14 +6,13 @@ from tensorboardX import SummaryWriter
 from torch.autograd import Variable
 from torchvision import transforms
 
-global data
-
 
 def train_net(args):
     start_epoch = 0
     best_loss = float('inf')
     epochs_since_improvement = 0
     train_set = WordDataSet('train')
+    global data
     data = train_set.data
     valid_set = WordDataSet('valid')
     train_loader = torch.utils.data.DataLoader(train_set, batch_size=args.batch_size, shuffle=True, num_workers=4)
