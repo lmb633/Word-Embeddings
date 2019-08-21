@@ -3,7 +3,7 @@ import torch
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 folder = 'data/《刘慈欣作品全集》(v1.0)'
-print_freq = 100
+print_freq = 1000
 data_path = 'data/data.pkl'
 vocabulary_size = 60898
 emb_size = 128
