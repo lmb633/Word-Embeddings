@@ -37,7 +37,7 @@ def train_net(args):
     for epoch in range(start_epoch, args.end_epoch):
         train_loss = train(train_loader, model, optimizer, epoch)
 
-        valid_loss = valid(valid_loader, model)
+        valid_loss = valid(valid_loader, model, epoch)
 
         is_best = valid_loss < best_loss
         best_loss = min(valid_loss, best_loss)
@@ -79,7 +79,7 @@ def valid(valid_loader, model, epoch):
     for i, pairs in enumerate(valid_loader):
         pos_u = [pair[0] for pair in pairs]
         pos_v = [pair[1] for pair in pairs]
-        neg_v = get_neg_v_sampling(data, pos_u, 5)
+        neg_v = get_neg_v_sampling(data['data'], pos_u, 5)
 
         pos_u = Variable(torch.LongTensor(pos_u)).to(device)
         pos_v = Variable(torch.LongTensor(pos_v)).to(device)
