@@ -87,10 +87,8 @@ def valid(valid_loader, model, epoch):
         neg_v = Variable(torch.LongTensor(neg_v)).to(device)
 
         loss = model(pos_u, pos_v, neg_v)
-
         losses.update(loss.item())
     print('Validation: epoch: {0} Loss {1:.4f}'.format(epoch, losses.avg))
-
     return losses.avg
 
 
