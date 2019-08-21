@@ -57,7 +57,7 @@ def train(train_loader, model, optimizer, epoch):
     for i, pairs in enumerate(train_loader):
         pos_u = [pair[0] for pair in pairs]
         pos_v = [pair[1] for pair in pairs]
-        neg_v = get_neg_v_sampling(data, pos_u, 5)
+        neg_v = get_neg_v_sampling(data['data'], pos_u, 5)
         pos_u = Variable(torch.LongTensor(pos_u)).to(device)
         pos_v = Variable(torch.LongTensor(pos_v)).to(device)
         neg_v = Variable(torch.LongTensor(neg_v)).to(device)
