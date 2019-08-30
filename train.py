@@ -23,7 +23,7 @@ import tensorflow as tf
 from matplotlib import pylab
 from six.moves import range
 from sklearn.manifold import TSNE
-
+import pandas as pd
 # plt.rcParams['font.sans-serif']=['Arial Unicode MS'] # for Mac
 plt.rcParams['font.sans-serif'] = ['SimHei']  # for Windows
 
@@ -209,7 +209,7 @@ def tf_skipgram():
 
         final_embeddings = normalized_embeddings.eval()
         # print(final_embeddings)
-        import pandas as pd
+
         df = pd.DataFrame(final_embeddings, index=dictionary.keys())
         df.to_csv("final_embeddings.csv", encoding='utf-8')
 

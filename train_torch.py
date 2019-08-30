@@ -67,7 +67,7 @@ def train(train_loader, model, optimizer, epoch):
         loss.backward()
         optimizer.step()
 
-        losses.update(loss.item())
+        losses.update(loss.data)
         if i % print_freq == 0:
             print('Epoch: [{0}][{1}/{2}]  Loss this batch:{3} (avg:{4})'.format(epoch, i, len(train_loader), losses.val, losses.avg))
     return losses.avg
@@ -75,7 +75,7 @@ def train(train_loader, model, optimizer, epoch):
 
 def valid(valid_loader, model, epoch):
     model.eval()
-    losses = AverageMeter()
+    losses = 0
     for i, pairs in enumerate(valid_loader):
         pos_u = [pair[0] for pair in pairs]
         pos_v = [pair[1] for pair in pairs]
@@ -86,8 +86,8 @@ def valid(valid_loader, model, epoch):
         neg_v = Variable(torch.LongTensor(neg_v)).to(device)
 
         loss = model(pos_u, pos_v, neg_v)
-        losses.update(loss.item())
-    print('Validation: epoch: {0} Loss {1:.4f}'.format(epoch, losses.avg))
+        losses += loss.data
+    print('Validation: epoch: {0} Loss {1:.4f}'.format(epoch, losses.avg / i))
     return losses.avg
 
 
